@@ -1,13 +1,8 @@
-import java.io.File;
-
-/**
- * Created by v.kovtun on 25.11.15.
- */
 public class WorkerThread implements Runnable {
-    File source;
-    File destination;
+    String source;
+    String destination;
     Thread t;
-    WorkerThread(File source, File destination){
+    WorkerThread(String source, String destination){
         this.source = source;
         this.destination = destination;
         t = new Thread(this);
@@ -15,7 +10,8 @@ public class WorkerThread implements Runnable {
     }
     @Override
     public void run() {
+        CopyWay copyWay = new CopierIoFis();
         System.out.println(t.getName());
-        Copier.copyFile(source, destination);
+        copyWay.copyFile(source, destination);
     }
 }
